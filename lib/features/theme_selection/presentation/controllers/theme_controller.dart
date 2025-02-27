@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 import 'package:multi_theme_getx/core/theme/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,6 +9,7 @@ class ThemesController extends GetxController {
   late SharedPreferences _prefs;
 
   var currentTheme = AppThemes.lightMode.obs;
+  var themeMode = ThemeMode.light.obs;
 
   @override
   void onInit() async {
@@ -27,62 +27,73 @@ class ThemesController extends GetxController {
     final savedThemeName = _prefs.getString(_themeKey) ?? 'light';
     switch (savedThemeName) {
       case 'light':
-        currentTheme.value = AppThemes.lightMode;
+        setLightTheme();
         break;
       case 'dark':
-        currentTheme.value = AppThemes.darkMode;
+        setDarkTheme();
         break;
       case 'purple':
-        currentTheme.value = AppThemes.purpleMode;
+        setPurpleTheme();
         break;
       case 'green':
-        currentTheme.value = AppThemes.greenMode;
+        setGreenTheme();
         break;
       case 'orange':
-        currentTheme.value = AppThemes.orangeMode;
+        setOrangeTheme();
         break;
       case 'blue':
-        currentTheme.value = AppThemes.blueMode;
+        setBlueTheme();
+        break;
+      case 'system':
+        setSystemTheme();
         break;
       default:
-        currentTheme.value = AppThemes.lightMode;
+        setLightTheme();
     }
   }
 
   void setTheme(String themeName, ThemeData themeData) {
     currentTheme.value = themeData;
-    log('Selected Theme Data: $themeData');
+    themeMode.value = ThemeMode.light;
     _saveThemeToPrefs(themeName);
+
+    Get.changeTheme(themeData);
+
     log('Theme changed to: $themeName');
   }
 
   void setLightTheme() {
     setTheme('light', AppThemes.lightMode);
-    log('Light theme Selected');
+    themeMode.value = ThemeMode.light;
   }
 
   void setDarkTheme() {
     setTheme('dark', AppThemes.darkMode);
-    log('Light theme Selected');
+    themeMode.value = ThemeMode.dark;
   }
 
   void setPurpleTheme() {
     setTheme('purple', AppThemes.purpleMode);
-    log('Light theme Selected');
   }
 
   void setOrangeTheme() {
     setTheme('orange', AppThemes.orangeMode);
-    log('Light theme Selected');
   }
 
   void setGreenTheme() {
     setTheme('green', AppThemes.greenMode);
-    log('Light theme Selected');
   }
 
   void setBlueTheme() {
     setTheme('blue', AppThemes.blueMode);
-    log('Light theme Selected');
+  }
+
+  void setSystemTheme() {
+    themeMode.value = ThemeMode.system;
+    _saveThemeToPrefs('system');
+
+    Get.changeThemeMode(ThemeMode.system);
+
+    log('System theme selected');
   }
 }

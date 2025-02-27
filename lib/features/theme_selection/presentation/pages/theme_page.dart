@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:multi_theme_getx/core/widgets/my_app_bar.dart';
 import 'package:multi_theme_getx/features/theme_selection/presentation/controllers/theme_controller.dart';

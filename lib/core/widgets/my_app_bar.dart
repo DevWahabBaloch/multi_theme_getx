@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget _child;
@@ -47,7 +49,7 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
                     child: Center(
                       child: IconButton(
                         icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.secondary),
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () => Get.back(),
                         padding: EdgeInsets.zero,
                       ),
                     ),
