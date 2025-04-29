@@ -10,6 +10,7 @@ class ThemesController extends GetxController {
 
   var currentTheme = AppThemes.lightMode.obs;
   var themeMode = ThemeMode.light.obs;
+  var currentThemeName = 'light'.obs;
 
   @override
   void onInit() async {
@@ -20,11 +21,13 @@ class ThemesController extends GetxController {
 
   Future<void> _saveThemeToPrefs(String themeName) async {
     await _prefs.setString(_themeKey, themeName);
+    currentThemeName.value = themeName;
     log('Theme saved to prefs: $themeName');
   }
 
   void _loadThemeFromPrefs() {
     final savedThemeName = _prefs.getString(_themeKey) ?? 'light';
+    currentThemeName.value = savedThemeName;
     switch (savedThemeName) {
       case 'light':
         setLightTheme();

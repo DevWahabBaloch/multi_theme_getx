@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 final ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   colorScheme: const ColorScheme.dark(
-    primary: Colors.green,
+    primary: Colors.white,
     onPrimary: Colors.white,
-    secondary: Colors.green,
+    secondary: Colors.black,
     surface: Colors.black,
   ),
   appBarTheme: const AppBarTheme(backgroundColor: Colors.green, titleTextStyle: TextStyle(color: Colors.white, fontSize: 20)),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:multi_theme_getx/core/constants/string_const.dart';
 import 'package:multi_theme_getx/core/widgets/my_app_bar.dart';
 import 'package:multi_theme_getx/features/theme_selection/presentation/controllers/theme_controller.dart';
 import 'package:multi_theme_getx/features/theme_selection/presentation/pages/theme_option_data.dart';
@@ -18,7 +19,7 @@ class ThemeSelectionScreen extends GetView<ThemesController> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: MyAppBar(title: 'Theme'),
+      appBar: MyAppBar(title: StringConst.theme),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: width * 0.03),
         child: Column(
@@ -31,8 +32,8 @@ class ThemeSelectionScreen extends GetView<ThemesController> {
                   showDialog(context: context, builder: (context) => ThemeSelectionDialog());
                 },
                 contentPadding: EdgeInsets.only(left: width * 0.04, bottom: height * 0.001, right: width * 0.03),
-                title: const Text('Background', style: TextStyle(color: Colors.white)),
-                subtitle: const Text('Auto (Light + Dark)', style: TextStyle(color: Colors.white)),
+                title: const Text(StringConst.background, style: TextStyle(color: Colors.white)),
+                subtitle: const Text(StringConst.darkLight, style: TextStyle(color: Colors.white)),
                 trailing: Icon(Icons.chevron_right, color: Colors.white),
               ),
             ),
@@ -43,11 +44,8 @@ class ThemeSelectionScreen extends GetView<ThemesController> {
                 children: [
                   ListTile(
                     contentPadding: EdgeInsets.only(left: width * 0.04, bottom: height * 0.001),
-                    title: const Text('Themes', style: TextStyle(color: Colors.white)),
-                    subtitle: const Text(
-                      'Customize the look and style of the app with\nunique color themes',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    title: const Text(StringConst.themes, style: TextStyle(color: Colors.white)),
+                    subtitle: const Text(StringConst.description, style: TextStyle(color: Colors.white)),
                     trailing: IconButton(onPressed: () {}, icon: const Icon(Icons.chevron_right, color: Colors.white)),
                   ),
                   Divider(
@@ -70,7 +68,11 @@ class ThemeSelectionScreen extends GetView<ThemesController> {
                       ),
                       itemCount: themes.length,
                       itemBuilder: (context, index) {
-                        return ThemeButton(onPressed: themes[index].onSelect, bgColor: themes[index].color);
+                        return ThemeButton(
+                          onPressed: themes[index].onSelect,
+                          bgColor: themes[index].color,
+                          themeName: themes[index].name,
+                        );
                       },
                     ),
                   ),
