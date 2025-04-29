@@ -44,6 +44,39 @@ class ThemesController extends GetxController {
       case 'blue':
         setBlueTheme();
         break;
+      case 'red':
+        setRedTheme();
+        break;
+      case 'pink':
+        setPinkTheme();
+        break;
+      case 'coral':
+        setCoralTheme();
+        break;
+      case 'mint':
+        setBlueTheme();
+        break;
+      case 'brown':
+        setMintTheme();
+        break;
+      case 'turquoise':
+        setTurquoiseTheme();
+        break;
+      case 'apricot':
+        setApricotTheme();
+        break;
+      case 'plum':
+        setPlumTheme();
+        break;
+      case 'magenta':
+        setMagentaTheme();
+        break;
+      case 'lavender':
+        setLavenderTheme();
+        break;
+      case 'peach':
+        setPeachTheme();
+        break;
       case 'system':
         setSystemTheme();
         break;
@@ -86,6 +119,50 @@ class ThemesController extends GetxController {
 
   void setBlueTheme() {
     setTheme('blue', AppThemes.blueMode);
+  }
+
+  void setBrownTheme() {
+    setTheme('brown', AppThemes.brownMode);
+  }
+
+  void setApricotTheme() {
+    setTheme('apricot', AppThemes.apricotMode);
+  }
+
+  void setCoralTheme() {
+    setTheme('coral', AppThemes.coralMode);
+  }
+
+  void setLavenderTheme() {
+    setTheme('lavender', AppThemes.lavenderMode);
+  }
+
+  void setMagentaTheme() {
+    setTheme('magenta', AppThemes.magentaMode);
+  }
+
+  void setMintTheme() {
+    setTheme('mint', AppThemes.mintMode);
+  }
+
+  void setPeachTheme() {
+    setTheme('peach', AppThemes.peachMode);
+  }
+
+  void setPinkTheme() {
+    setTheme('pink', AppThemes.pinkMode);
+  }
+
+  void setPlumTheme() {
+    setTheme('plum', AppThemes.plumMode);
+  }
+
+  void setRedTheme() {
+    setTheme('red', AppThemes.redMode);
+  }
+
+  void setTurquoiseTheme() {
+    setTheme('turquoise', AppThemes.turquoiseMode);
   }
 
   void setSystemTheme() {

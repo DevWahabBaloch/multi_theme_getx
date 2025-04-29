@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:multi_theme_getx/core/widgets/my_app_bar.dart';
 import 'package:multi_theme_getx/features/theme_selection/presentation/controllers/theme_controller.dart';
+import 'package:multi_theme_getx/features/theme_selection/presentation/models/theme_option.dart';
 import 'package:multi_theme_getx/features/theme_selection/presentation/widgets/theme_button.dart';
 import 'package:multi_theme_getx/features/theme_selection/presentation/widgets/theme_selection_dialog.dart';
 
@@ -14,12 +15,22 @@ class ThemeSelectionScreen extends GetView<ThemesController> {
     double width = MediaQuery.sizeOf(context).width;
     double height = MediaQuery.sizeOf(context).height;
 
-    final List<Color> themeColors = [Colors.blue, Colors.purple, Colors.green, Colors.orange];
-    final List<VoidCallback> pressToChangeTheme = [
-      controller.setBlueTheme,
-      controller.setPurpleTheme,
-      controller.setGreenTheme,
-      controller.setOrangeTheme,
+    final List<ThemeOption> themes = [
+      ThemeOption(color: Colors.blue, onSelect: controller.setBlueTheme),
+      ThemeOption(color: Colors.purple, onSelect: controller.setPurpleTheme),
+      ThemeOption(color: Colors.green, onSelect: controller.setGreenTheme),
+      ThemeOption(color: Colors.orange, onSelect: controller.setOrangeTheme),
+      ThemeOption(color: Colors.brown, onSelect: controller.setBrownTheme),
+      ThemeOption(color: Colors.pink, onSelect: controller.setPinkTheme),
+      ThemeOption(color: Colors.red, onSelect: controller.setRedTheme),
+
+      ThemeOption(color: Color(0xFFFFD1A4), onSelect: controller.setApricotTheme), // Apricot
+      ThemeOption(color: Color(0xFFFF6F61), onSelect: controller.setCoralTheme), // Coral
+      ThemeOption(color: Color.fromARGB(200, 209, 196, 233), onSelect: controller.setLavenderTheme), // Lavender
+      ThemeOption(color: Color.fromARGB(66, 255, 0, 255), onSelect: controller.setMagentaTheme), // Magenta
+      ThemeOption(color: Color(0xFF98FF98), onSelect: controller.setMintTheme), // Mint
+      ThemeOption(color: Color(0xFFFFE5B4), onSelect: controller.setPeachTheme), // Peach
+      ThemeOption(color: Color(0xFF8E4585), onSelect: controller.setPlumTheme), // Plum
     ];
 
     return Scaffold(
@@ -30,7 +41,7 @@ class ThemeSelectionScreen extends GetView<ThemesController> {
         child: Column(
           children: [
             Card(
-              color: const Color.fromARGB(204, 0, 0, 0),
+              color: const Color.fromARGB(64, 0, 0, 0),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
               child: ListTile(
                 onTap: () {
@@ -43,7 +54,7 @@ class ThemeSelectionScreen extends GetView<ThemesController> {
               ),
             ),
             Card(
-              color: const Color.fromARGB(204, 0, 0, 0),
+              color: const Color.fromARGB(64, 0, 0, 0),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
               child: Column(
                 children: [
@@ -74,9 +85,9 @@ class ThemeSelectionScreen extends GetView<ThemesController> {
                         mainAxisSpacing: 8,
                         childAspectRatio: 1,
                       ),
-                      itemCount: 4,
+                      itemCount: themes.length,
                       itemBuilder: (context, index) {
-                        return ThemeButton(onPressed: pressToChangeTheme[index], bgColor: themeColors[index]);
+                        return ThemeButton(onPressed: themes[index].onSelect, bgColor: themes[index].color);
                       },
                     ),
                   ),
